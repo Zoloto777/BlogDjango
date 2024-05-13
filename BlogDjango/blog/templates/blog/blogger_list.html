@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}All Bloggers{% endblock %}
+
+{% block content %}
+    <h2>Bloggers</h2>
+    <ul>
+        {% for blogger in bloggers %}
+            <li><a href="{% url 'blogger-detail' blogger.id %}">{{ blogger.user }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

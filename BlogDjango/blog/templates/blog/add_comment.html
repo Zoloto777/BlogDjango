@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+    /* Custom CSS Styles */
+    h1 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    input[type="text"], textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button[type="submit"] {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+    </style>
+    <h1>Add Comment to post {{ post_title }}</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="post_id" value="{{ post.id }}">
+        <button type="submit">Add Comment</button>
+    </form>
+{% endblock %}

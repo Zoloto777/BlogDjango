@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Name: {{ blogger.user }}</h1>
+    <p>Bio: {{ blogger.bio }}</p>
+
+    <h2>Posts {{ blogger.name }}</h2>
+    <ul>
+        {% for post in posts %}
+            <li><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

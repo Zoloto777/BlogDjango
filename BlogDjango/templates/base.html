@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sty.css' %}">
+    <title>{% block title %}diyBlog{% endblock %}</title>
+</head>
+<body>
+    <main>
+        <div class="sidebar">
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'blog-list' %}">Blogs</a></li>
+            <li><a href="{% url 'blogger-list' %}">Bloggers</a></li>
+        </ul>
+        <ul>
+            <li class = "user">User: {{ user.username }}</li>
+            {% if user.is_authenticated %}
+                <li><a href="/accounts/logout/">Logout</a></li>
+            {% else %}
+                <li><a href="/accounts/login/">Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</main>
+
+
+</body>
+</html>

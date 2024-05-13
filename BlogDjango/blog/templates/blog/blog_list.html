@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}All Blogs{% endblock %}
+
+{% block content %}
+    <h2>Blogs</h2>
+    <ul>
+        {% for blog in blogs %}
+        
+            <li><a href="{% url 'post-detail' blog.id %}">{{ blog.name }}</li>
+            <ul>
+
+            </ul>
+        {% endfor %}
+    </ul>
+
+    {% if is_paginated %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if blogs.has_previous %}
+                <a href="?page=1" class="page-link">&laquo; First</a>
+                <a href="?page={{ blogs.previous_page_number }}" class="page-link">Previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}.
+            </span>
+
+            {% if blogs.has_next %}
+                <a href="?page={{ blogs.next_page_number }}" class="page-link">Next</a>
+                <a href="?page={{ blogs.paginator.num_pages }}" class="page-link">Last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endif %}
+
+{% endblock %}
